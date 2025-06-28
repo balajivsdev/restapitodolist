@@ -1,68 +1,66 @@
-# CodeIgniter 4 Application Starter
+## Getting Started
 
-## What is CodeIgniter?
+### 1. Unpack the Project
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Unzip the folder containing the CodeIgniter 4 (CI4) project files.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+### 2. Run the Development Server
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+From the root of the project directory, run:
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+```bash
+php spark serve
+This will start the server at:
+http://localhost:8080
 
-## Installation & updates
+📮 API Endpoints
+Use Postman or any API client to test the following endpoints.
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+🔐 Authentication
+Register
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+POST http://localhost:8080/register
+Body (JSON):
 
-## Setup
+{
+  "name": "your_username",
+  "email": "your_email@example.com",
+  "password": "your_password"
+}
+Login
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+POST http://localhost:8080/login
+Body (JSON):
 
-## Important Change with index.php
+{
+  "email": "your_email@example.com",
+  "password": "your_password"
+}
+📝 Todo
+Get All Todos
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+GET http://localhost:8080/api/todo
+Create a Todo
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+POST http://localhost:8080/api/todo
+{
+  "title": "Buy milk",
+  "description": "From nearby store"
+}
+Update a Todo
 
-**Please** read the user guide for a better explanation of how CI4 works!
+POST http://localhost:8080/api/todo/{id}
+Body (JSON):
 
-## Repository Management
+json
+{
+  "title": "Buy bread",
+  "description": "Whole grain"
+}
+Delete a Todo
+DELETE http://localhost:8080/api/todo/{id}
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+Get a Single Todo
+GET http://localhost:8080/api/todo/{id}
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
 
-## Server Requirements
-
-PHP version 8.1 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
