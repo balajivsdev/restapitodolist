@@ -4,6 +4,12 @@
 
 Unzip the folder containing the CodeIgniter 4 (CI4) project files.
 
+change env to .env
+
+Run composer install to install the dependecies
+
+then run php spark serve
+
 ### 2. Run the Development Server
 
 From the root of the project directory, run:
